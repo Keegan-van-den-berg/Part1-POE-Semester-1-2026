@@ -22,41 +22,78 @@ public class Test1 {
     }
     
     @Test
-    public void testCheckUsername(){
+    public void testCheckUsernameTrue(){
         assertTrue(testAccount.checkUserName("kyl_1"));
+    }
+    
+    @Test
+    public void testCheckUsernameFalse(){
         assertFalse(testAccount.checkUserName("kyle!!!!!!!"));
     }
     
     @Test
-    public void testPasswordComplexity(){
+    public void testPasswordComplexityTrue(){
         assertTrue(testAccount.checkPasswordComplexity("Ch&&sec@ke99!"));
+    }
+    
+    @Test
+    public void testPasswordComplexityFalse(){
         assertFalse(testAccount.checkPasswordComplexity("password"));
     }
     
     @Test
-    public void testCheckPhoneNumber(){
+    public void testCheckPhoneNumberTrue(){
         assertTrue(testAccount.checkCellPhoneNumber("+27838968976"));
-        assertFalse(testAccount.checkCellPhoneNumber("0838968976"));
     }
     
     @Test
-    public void testRegisterUser(){
+    public void testCheckPhoneNumberFalse(){
+        assertFalse(testAccount.checkCellPhoneNumber("0838968976"));
+    }
+    
+     @Test
+    public void testRegisterUserAll(){
         assertEquals("Username and password are correctly formatted,\nand the user has successfully been registered.", 
                 testAccount.registerUser(true, true, true));
-        
+    }
+    
+     @Test
+    public void testRegisterUserUsername(){
         assertEquals("Username is incorrectly formatted.\nPlease ensure that your username contains a underscore,\n and is no more than five characters in length.", 
                 testAccount.registerUser(false, true, true));
-        
+    }
+    
+     @Test
+    public void testRegisterUserPassword(){        
         assertEquals("Password is not correctly formatted.\nPlease ensure that the password contains an uppercase letter,\na digt, a special character, and is at least eight characters in length.", 
                 testAccount.registerUser(true, false, true));
-        
+    }
+    
+     @Test
+    public void testRegisterUserCell(){
         assertEquals("Cell number is incorrectly formatted or does not have an international code.\nPlease correct the number and try again.", 
                 testAccount.registerUser(true, true, false));
     }
     
     @Test
-    public void testLoginUser(){
+    public void testLoginUserTrue(){
         assertTrue(testAccount.loginUser("kyl_1", "Ch&&sec@ke99!"));
+    }
+    
+    @Test
+    public void testLoginUserFalse(){
         assertFalse(testAccount.loginUser("kyle!!!!!!!", "password"));
+    }
+    
+    @Test 
+    public void testReturnLoginStatusCorrect(){
+        assertEquals("Welcome Kyle Johnathon, its great to see you!"
+            , testAccount.returnLoginStatus(true, "Kyle Johnathon"));
+    }
+    
+    @Test
+    public void testReturnLoginStatusError(){
+        assertEquals("Username or password incorrect, please try again.",
+                testAccount.returnLoginStatus(false, "Kyle Johnathon"));
     }
 }
