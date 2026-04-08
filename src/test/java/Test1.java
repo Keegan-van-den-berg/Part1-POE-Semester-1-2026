@@ -96,4 +96,10 @@ public class Test1 {
         assertEquals("Username or password incorrect, please try again.",
                 testAccount.returnLoginStatus(false, "Kyle Johnathon"));
     }
+    
+    @Test
+    public void CheckNameAndSurnameEquals(){
+        assertEquals("Kyle John", testAccount.getNameAndSurname("kyl_1", "Ch&&sec@ke99!"));
+    }
+    
 }
