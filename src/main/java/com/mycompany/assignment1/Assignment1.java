@@ -103,6 +103,7 @@ public class Assignment1 {
                     //Prints message that the user has been registered
                     System.out.println(account1.registerUser(userValid, passwordValid, phoneValid));
                 } else {
+                    //Prints an error
                     System.out.println("An error occured, please try again.");
                 }
                 

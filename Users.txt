@@ -16,3 +16,15 @@ Name: ziva
 Surname: van den berg
 Phone: +27948691111
 
+Username: Matt_
+Password: f@Rta1ot
+Name: Matthew
+Surname: Johnstone
+Phone: +27768013624
+
+Username: Doe_
+Password: JohnD0e!
+Name: john
+Surname: doe
+Phone: +27609340418
+
