@@ -53,7 +53,7 @@ public class Test1 {
     
      @Test
     public void testRegisterUserAll(){
-        assertEquals("Username and password are correctly formatted,\nand the user has successfully been registered. Please try again.", 
+        assertEquals("Username and password are correctly formatted,\nand the user has successfully been registered.", 
                 testAccount.registerUser(true, true, true));
     }
     
@@ -65,7 +65,7 @@ public class Test1 {
     
      @Test
     public void testRegisterUserPassword(){        
-        assertEquals("Password is not correctly formatted.\nPlease ensure that the password contains an uppercase letter,\na digt, a special character, and is at least eight characters in length.", 
+        assertEquals("Password is not correctly formatted.\nPlease ensure that the password contains an uppercase letter,\na digt, a special character, and is at least eight characters in length.\nPlease try", 
                 testAccount.registerUser(true, false, true));
     }
     
