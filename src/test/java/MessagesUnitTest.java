@@ -58,5 +58,25 @@ public class MessagesUnitTest {
         assertFalse(testMessage.checkMessageID());
     }
     
+    @Test 
+    public void checkMessageSentOne(){
+        assertEquals("Message successfully sent!", testMessage.SentMessage(1));
+    }
+    
+    @Test
+    public void checkMessageSentTwo(){
+        assertEquals("Message has been successfully deleted!", testMessage.SentMessage(2));
+    }
+    
+    @Test
+    public void checkMessageSentThree(){
+        assertEquals("Message has successfully been stored!", testMessage.SentMessage(3));
+    }
+    
+    @Test
+    public void checkMessageSentDefault(){
+        assertEquals("Error, please select one of the given option", testMessage.SentMessage(4));
+    }
+    
     
 }

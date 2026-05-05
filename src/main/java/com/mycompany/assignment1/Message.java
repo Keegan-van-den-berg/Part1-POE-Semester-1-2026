@@ -156,7 +156,7 @@ public class Message {
                 Confirmation = "Message successfully sent!";
                 break;
             case 2:
-                Confirmation = "Message has been successfully deleted";
+                Confirmation = "Message has been successfully deleted!";
                 break;
             case 3:
                 Confirmation = "Message has successfully been stored!";
