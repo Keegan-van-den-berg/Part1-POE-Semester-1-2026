@@ -18,6 +18,10 @@ public class MessagesUnitTest {
     }
     
     @Test
+    public void checkNumOfMessagesTrue(){
+        assertEquals(2, testMessage.getNumOfMessages(2));
+    }
+    @Test
     public void checkMessageTrue(){
         assertEquals("Message ready to send!",
                 testMessage.checkMessage("Hi Mike, can you join us for dinner tonight?"));
@@ -46,4 +50,16 @@ public class MessagesUnitTest {
                     + "\nis no more than 10 characters and contains an international code",
                 testMessage.checkRecipientCell("0718693002"));
     }
+    
+    @Test
+    public void messageIDCreatedTrue(){
+        assertTrue(testMessage.checkMessageID());
+    }
+    
+    @Test
+    public void messageIDCreatedFalse(){
+        assertFalse(testMessage.checkMessageID());
+    }
+    
+    
 }
