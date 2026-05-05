@@ -53,13 +53,13 @@ public class Test1 {
     
      @Test
     public void testRegisterUserAll(){
-        assertEquals("Username and password are correctly formatted,\nand the user has successfully been registered.", 
+        assertEquals("Username and password are correctly formatted,\nand the user has successfully been registered. Please try again.", 
                 testAccount.registerUser(true, true, true));
     }
     
      @Test
     public void testRegisterUserUsername(){
-        assertEquals("Username is incorrectly formatted.\nPlease ensure that your username contains a underscore,\n and is no more than five characters in length.", 
+        assertEquals("Username is incorrectly formatted.\nPlease ensure that your username contains a underscore,\nand is no more than five characters in length.\nPlease try again.", 
                 testAccount.registerUser(false, true, true));
     }
     
@@ -87,8 +87,8 @@ public class Test1 {
     
     @Test 
     public void testReturnLoginStatusCorrect(){
-        assertEquals("Welcome Kyle Johnathon, its great to see you!"
-            , testAccount.returnLoginStatus(true, "Kyle Johnathon"));
+        assertEquals("\n===============================\nWelcome to QuickChat\n===============================\n"
+                , testAccount.returnLoginStatus(true, "Kyle Johnathon"));
     }
     
     @Test
