@@ -65,7 +65,7 @@ public class Test1 {
     
      @Test
     public void testRegisterUserPassword(){        
-        assertEquals("Password is not correctly formatted.\nPlease ensure that the password contains an uppercase letter,\na digt, a special character, and is at least eight characters in length.\nPlease try", 
+        assertEquals("Password is not correctly formatted.\nPlease ensure that the password contains an uppercase letter,\na digt, a special character, and is at least eight characters in length.\nPlease try again.", 
                 testAccount.registerUser(true, false, true));
     }
     
