@@ -22,9 +22,4 @@ Name: Matthew
 Surname: Johnstone
 Phone: +27768013624
 
-Username: Doe_
-Password: JohnD0e!
-Name: john
-Surname: doe
-Phone: +27609340418
 

@@ -32,12 +32,7 @@ public class Login {
         } else {
             userValid = false;
         }
-        
-        //If username is correctly formatted
-        if (userValid == true){
-            System.out.println("Username successfully captured!");
-        }
-        
+
         return(userValid);
     }
     
@@ -86,11 +81,6 @@ public class Login {
             }
         }
         
-        //Displays a message if all requirements for password has been met
-        if (passwordValid == true){
-            System.out.println("Password successfully captured!");
-        }
-        
         return(passwordValid);
     }
     
@@ -104,11 +94,6 @@ public class Login {
         //Checks if phone number is correctly formatted
         if (phoneNumber.matches("\\+27\\d{9}")){ //checks if phone number begins with "+27" and is 9 digits
             phoneValid = true;
-        }
-        
-        //Shows a message if all phone number requirements have been met
-        if (phoneValid == true){
-            System.out.println("Phone number successfully added!");
         }
         
         return(phoneValid);
@@ -292,7 +277,11 @@ public class Login {
         //Checks if the username and password match what is in the txt file
         if (match == true){
             //displays welcome message
-            message = "Welcome " + NameAndSurname + ", its great to see you!";
+            
+            message = "\n==============================="
+                    + "\nWelcome to QuickChat"
+                    + "\n==============================="
+                    + "\n";
         } else {
             //shows error message
             message = "Username or password incorrect, please try again.";

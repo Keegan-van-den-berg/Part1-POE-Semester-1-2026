@@ -12,127 +12,273 @@ import java.util.Scanner;
 public class Assignment1 {
 
     public static void main(String[] args) {
-        //Global variables for value validity
+        startApplication();
+    }
+    
+    
+    public static void startApplication() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("============================================="
+                + "\nMAIN MENU"
+                + "\n=============================================\n"
+                + "\nWhat would you like to do:"
+                + "\n[1] Create an account"
+                + "\n[2] Login");
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        handleMainMenu(choice, scanner);
+    }
+    
+    
+
+    public static void handleMainMenu(int choice, Scanner scanner) {
+        switch (choice) {
+            case 1:
+                handleRegister(scanner);
+                break;
+            case 2:
+                handleLogin(scanner);
+                break;
+            default:
+                System.out.println("Please choose either of the given options.");
+        }
+    }
+    
+    public static void handleRegister(Scanner scanner) {
+        // Global variables for value validity
         boolean userValid;
         boolean passwordValid;
         boolean phoneValid;
-        
-        //Initializing Name and surname
+
+        // Initializing Name and surname
         String Name = "";
         String Surname = "";
-        
-        //Initializes name and surname for login message
-        String NameAndSurname = ""; 
-        
-        Scanner scanner = new Scanner(System.in);
-        
-        //creates a new login object
+
+        // creates a new login object
         Login account1 = new Login();
-        
-        //Prints out the menu
-        System.out.println("What would you like to do:"
-                + "\n[1] Create an account"
-                + "\n[2] Login");
-        
-        //Gets the choice the user picked
-        int choice = scanner.nextInt();
-        
-        //Clears scanner for the next time it is used
-        scanner.nextLine();
-        
-        switch (choice){
-            case 1:
-                //Asks for name
-                System.out.println("Enter your first name: ");
-                Name = scanner.nextLine();
-        
-                //Asks for surname
-                System.out.println("Enter your surname:");
-                Surname = scanner.nextLine();
-        
-                //Sets Name and Surname
-                account1.setNameAndSurname(Name, Surname);
-        
-                //Asks for username
+
+        // Asks for name
+        System.out.println("Enter your first name: ");
+        Name = scanner.nextLine();
+
+        // Asks for surname
+        System.out.println("Enter your surname:");
+        Surname = scanner.nextLine();
+
+        // Sets Name and Surname
+        account1.setNameAndSurname(Name, Surname);
+
+        // Asks for username
+        System.out.println("Enter your username: ");
+        String Username = scanner.nextLine();
+        userValid = account1.checkUserName(Username);
+
+        // Looping for when username is incorrectly formatted
+        if (userValid == false){
+            while (account1.checkUserName(Username) == false){
+                System.out.println(account1.registerUser(false, true, true));
                 System.out.println("Enter your username: ");
-                String Username = scanner.nextLine();
+                Username = scanner.nextLine();
                 userValid = account1.checkUserName(Username);
-                
-                //Looping for when username is incorrectly formatted
-                if (userValid == false){
-                    while (account1.checkUserName(Username) == false){
-                        System.out.println(account1.registerUser(false, true, true)); //Prints error message
-                        System.out.println("Enter your username: ");
-                        String usernameReattempt = scanner.nextLine();
-                        userValid = account1.checkUserName(usernameReattempt);
-                    }
-                }
-        
-                //Asks for password
+            }
+        }
+
+        // Asks for password
+        System.out.println("Enter your password: ");
+        String Password = scanner.nextLine();
+        passwordValid = account1.checkPasswordComplexity(Password);
+
+        // Looping for when password is incorrectly formatted
+        if (passwordValid == false){
+            while (account1.checkPasswordComplexity(Password) == false){
+                System.out.println(account1.registerUser(true, false, true));
                 System.out.println("Enter your password: ");
-                String Password = scanner.nextLine();
+                Password = scanner.nextLine();
                 passwordValid = account1.checkPasswordComplexity(Password);
-                
-                //Looping for when password is incorrectly formatted
-                if (passwordValid == false){
-                    while (account1.checkPasswordComplexity(Password) == false){
-                        System.out.println(account1.registerUser(true, false, true)); //Prints error message
-                        System.out.println("Enter your password: ");
-                        String passwordReattempt = scanner.nextLine();
-                        passwordValid = account1.checkPasswordComplexity(passwordReattempt);
-                    }
-                }
-                        
-                //Asks for phone number
+            }
+        }
+
+        // Asks for phone number
+        System.out.println("Enter your phone number: ");
+        String Phone = scanner.nextLine();
+        phoneValid = account1.checkCellPhoneNumber(Phone);
+
+        // Looping for when phone is incorrectly formatted
+        if (phoneValid == false){
+            while (account1.checkCellPhoneNumber(Phone) == false){
+                System.out.println(account1.registerUser(true, true, false));
                 System.out.println("Enter your phone number: ");
-                String Phone = scanner.nextLine();
+                Phone = scanner.nextLine();
                 phoneValid = account1.checkCellPhoneNumber(Phone);
-                
-                //Looping for when phone is incorrectly formatted
-                if (phoneValid == false){
-                    while (account1.checkCellPhoneNumber(Phone) == false){
-                        System.out.println(account1.registerUser(true, true, false));//Prints error message
-                        System.out.println("Enter your phone number: ");
-                        String phoneReattempt = scanner.nextLine();
-                        phoneValid = account1.checkCellPhoneNumber(phoneReattempt);
-                    }
-                }
+            }
+        }
+
+        // Registers user
+        if (account1.writeUser() == true){
+            System.out.println(account1.registerUser(userValid, passwordValid, phoneValid));
+        } else {
+            System.out.println("An error occured, please try again.");
+        }
+    }
+    
+    public static void handleLogin(Scanner scanner) {
         
-                //Registers user
-                if (account1.writeUser() == true){
-                    //Prints message that the user has been registered
-                    System.out.println(account1.registerUser(userValid, passwordValid, phoneValid));
-                } else {
-                    //Prints an error
-                    System.out.println("An error occured, please try again.");
+        System.out.println("Enter your username: ");
+        String loginUsername = scanner.nextLine();
+
+        System.out.println("Enter your password: ");
+        String loginPassword = scanner.nextLine();
+
+        Login account1 = new Login();
+
+        boolean match = account1.loginUser(loginUsername, loginPassword);
+
+        String NameAndSurname = "";
+
+        if(match == true){
+            NameAndSurname = account1.getNameAndSurname(loginUsername, loginPassword);
+        }
+
+        System.out.println(account1.returnLoginStatus(match, NameAndSurname));
+
+        if (match == true){
+            handleMessagingMenu(scanner);
+        }
+    }
+    
+    public static void handleMessagingMenu(Scanner scanner) {
+        String InformationMessage = "";
+        System.out.println("Would you like to:"
+            + "\n[1] Send messages"
+            + "\n[2] Show recently sent messages"
+            + "\n[3] Quit");
+        int messageChoice = scanner.nextInt();
+            
+        scanner.nextLine();
+        String AllMessages = "";
+        switch (messageChoice){
+            case 1:
+                //Asks for number of messages
+                int NumMessages = 0;
+                System.out.println("How many messages would you like to send:");
+                NumMessages = scanner.nextInt();
+                scanner.nextLine();
+                        
+                Message message = new Message();
+                        
+                for (int i = 0; i < NumMessages; i++){
+                    message.resetMessage();
+                                
+                    //Asks for recipients phone number
+                    System.out.println("What is the phone number of the person you would like"
+                        + " to send the message to:");
+                    String RecipientPhone = scanner.nextLine();
+                                
+                    message.checkRecipientCell(RecipientPhone);
+                    boolean RecipientPhoneValid = false;
+                    RecipientPhoneValid = message.PhoneValid;
+                        
+                    if (RecipientPhoneValid == false){
+                        while (RecipientPhoneValid == false){
+                            System.out.println(message.checkRecipientCell(RecipientPhone));
+                            System.out.println("What is the phone number of the person you would like"
+                                + " to send the message to:");
+                            RecipientPhone = scanner.nextLine();
+                            message.checkRecipientCell(RecipientPhone);
+                            RecipientPhoneValid = message.PhoneValid;
+                        }
+                    } 
+                    boolean messageValid = false;
+                        
+                    if (RecipientPhoneValid == true){
+                        System.out.println(message.checkRecipientCell(RecipientPhone));
+                        System.out.println("What would you like to say:");
+                        String text = scanner.nextLine();
+                        System.out.println(message.checkMessage(text));
+                        messageValid = message.setMessageValid();
+                        
+                        while (message.setMessageValid() == false){
+                            System.out.println("What would you like to say:");
+                            text = scanner.nextLine();
+                            System.out.println(message.checkMessage(text));
+                            messageValid = message.setMessageValid();
+                        }
+                         
+                                    
+                        if (messageValid == true){
+                            message.getNumOfMessages(i);
+                            System.out.println("What would you like to do with the message:"
+                                + "\n[1] Send Message"
+                                + "\n[2] Disregard Message"
+                                + "\n[3] Store Message to Send Later");
+                            
+                            int sendChoice = scanner.nextInt();
+                            scanner.nextLine();
+                                
+                            switch (sendChoice){
+                                case 1:
+                                    String MessageID = message.genrateMessageID();
+                                    String Cell = message.returnRecipientCell();
+                            
+                                                
+                                    if (message.checkMessageID() == true){
+                                        message.getFirstAndLastWord();
+                                        String MessageHash = message.createMessageHash();
+                                                
+                                        InformationMessage = InformationMessage + "\n" + "Message ID: " +
+                                                MessageID + "\nMessage Hash: " + MessageHash +
+                                                "\nRecipient: " + Cell + "\nMessage: " 
+                                                + message.returnMessage() + "\n";
+                                                    
+                                        
+                                       
+                                        System.out.println(InformationMessage);
+                                    }
+                                    System.out.println(message.SentMessage(1));
+                                    break;
+                                case 2:
+                                    System.out.println("Press 0 to delete the messages");
+                                    if (scanner.nextInt() == 0){
+                                        i--;
+                                        System.out.println(message.SentMessage(2));
+                                        break;
+                                    }
+                                case 3:
+                                    message.genrateMessageID();
+                                    message.getFirstAndLastWord();
+                                    message.createMessageHash();
+                                    message.writeMessage();
+                                    System.out.println(message.SentMessage(3));
+                                    break;
+                                default:
+                                    System.out.println(message.SentMessage(4));
+                                    NumMessages--;
+                                    break;
+                            }
+                        }
+                    }   
+                           
                 }
-                
+                System.out.println("==========================================================");
+                System.out.println("Total number of messages sent: " + message.returnTotalMessages());
+                System.out.println("==========================================================");
                 break;
-                
+                            
             case 2:
-                System.out.println("Enter your username: ");
-                String loginUsername = scanner.nextLine();
-                
-                System.out.println("Enter your password: ");
-                String loginPassword = scanner.nextLine();
-                
-                //True only if the username and password both match
-                boolean match = account1.loginUser(loginUsername, loginPassword);
-                
-                if(match == true){
-                    //Gets name and surname for user after successful login
-                    NameAndSurname = account1.getNameAndSurname(loginUsername, loginPassword);
-                }
-                
-                //returns login status message
-                System.out.println(account1.returnLoginStatus(match, NameAndSurname));
+                System.out.println("Coming Soon");            
                 break;
-                
+            case 3:
+                System.out.println("Goodbye!");
+                System.exit(0);            
+                break;
             default:
-                //If the user did not pick 1 or 2 in the main menu
-                System.out.println("Please choose either of the given options.");
+                System.out.println("Error! Please select one of the given options!");            
                 break;
         }
-        
     }
+    
+    
 }
