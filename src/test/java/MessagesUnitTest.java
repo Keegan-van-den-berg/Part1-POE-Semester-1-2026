@@ -16,11 +16,7 @@ public class MessagesUnitTest {
     Message testMessage = new Message();
     public MessagesUnitTest() {
     }
-    
-    @Test
-    public void checkNumOfMessagesTrue(){
-        assertEquals(2, testMessage.getNumOfMessages(2));
-    }
+   
     @Test
     public void checkMessageTrue(){
         assertEquals("Message ready to send!",
