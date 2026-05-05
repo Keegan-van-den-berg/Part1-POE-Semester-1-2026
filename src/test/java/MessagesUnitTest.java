@@ -49,6 +49,7 @@ public class MessagesUnitTest {
     
     @Test
     public void messageIDCreatedTrue(){
+        testMessage.genrateMessageID();
         assertTrue(testMessage.checkMessageID());
     }
     
