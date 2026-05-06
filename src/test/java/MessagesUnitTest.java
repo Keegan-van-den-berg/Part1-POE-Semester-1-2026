@@ -80,15 +80,22 @@ public class MessagesUnitTest {
     
     @Test
     public void checkMessageHashCorrectTrue(){
-        String message = "Hi Mike, can you join us for dinner tonight?";
-        String messageID = testMessage.genrateMessageID();
-        testMessage.checkMessage(message);
-        testMessage.getNumOfMessages(1);
-        testMessage.getFirstAndLastWord();
+        String[] messages = {"Hi Mike, can you join us for dinner tonight?", "Hi Keegan, did you receive the payment?"};
         
-        assertEquals(messageID.substring(0, 2) + ":1:HITONIGHT",
-                testMessage.createMessageHash());
-        
+        for (int i = 0; i< messages.length; i++){
+            String messageID = testMessage.genrateMessageID();
+            testMessage.checkMessage(messages[i]);
+            testMessage.getNumOfMessages(i);
+            testMessage.getFirstAndLastWord();
+            
+            if (i == 0){
+                assertEquals(messageID.substring(0, 2) + ":1:HITONIGHT",
+                    testMessage.createMessageHash());
+            } else if (i == 1){
+                assertEquals(messageID.substring(0, 2) + ":1:HIPAYMENT",
+                    testMessage.createMessageHash());
+            }
+        }
     }
     
     
