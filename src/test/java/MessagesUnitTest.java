@@ -89,7 +89,7 @@ public class MessagesUnitTest {
             testMessage.getFirstAndLastWord();
             
             if (i == 0){
-                assertEquals(messageID.substring(0, 2) + ":1:HITONIGHT",
+                assertEquals(messageID.substring(0, 2) + ":0:HITONIGHT",
                     testMessage.createMessageHash());
             } else if (i == 1){
                 assertEquals(messageID.substring(0, 2) + ":1:HIPAYMENT",
