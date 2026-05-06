@@ -79,7 +79,7 @@ public class MessagesUnitTest {
     }
     
     @Test
-    public void checkMessageHashCorrectTrue(){
+    public void checkMessageHashCorrect(){
         String[] messages = {"Hi Mike, can you join us for dinner tonight?", "Hi Keegan, did you receive the payment?"};
         
         for (int i = 0; i< messages.length; i++){
