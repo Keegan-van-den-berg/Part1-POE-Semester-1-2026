@@ -78,5 +78,17 @@ public class MessagesUnitTest {
         assertEquals("Error, please select one of the given option", testMessage.SentMessage(4));
     }
     
+    @Test
+    public void checkMessageHashCorrectTrue(){
+        String message = "Hi Mike, can you join us for dinner tonight?";
+        String messageID = testMessage.genrateMessageID();
+        testMessage.checkMessage(message);
+        testMessage.getNumOfMessages(1);
+        
+        assertEquals(messageID.substring(0, 2) + ":1:HITONIGHT",
+                testMessage.createMessageHash());
+        
+    }
+    
     
 }
