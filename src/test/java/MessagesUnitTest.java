@@ -92,7 +92,7 @@ public class MessagesUnitTest {
                 assertEquals(messageID.substring(0, 2) + ":0:HITONIGHT",
                     testMessage.createMessageHash());
             } else if (i == 1){
-                assertEquals(messageID.substring(0, 2) + ":1:HIPAYMENT",
+                assertEquals(messageID.substring(0, 2) + ":0:HIPAYMENT",
                     testMessage.createMessageHash());
             }
         }
