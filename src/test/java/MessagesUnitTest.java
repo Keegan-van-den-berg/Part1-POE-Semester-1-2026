@@ -84,6 +84,7 @@ public class MessagesUnitTest {
         String messageID = testMessage.genrateMessageID();
         testMessage.checkMessage(message);
         testMessage.getNumOfMessages(1);
+        testMessage.getFirstAndLastWord();
         
         assertEquals(messageID.substring(0, 2) + ":1:HITONIGHT",
                 testMessage.createMessageHash());
